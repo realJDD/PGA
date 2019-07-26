@@ -1,17 +1,17 @@
 import scrapy
-from ..items import ExampleItem
 
 
 class pgaSpider(scrapy.Spider):
     name = "PGA"
     start_urls = [
-        'https://www.pgatour.com/stats.html'
+        'https://www.pgatour.com/players.html'
     ]
 
     def parse(self, response):
-        items = ExampleItem()
-        player_name = response.css("td.second-td.player-name-row a").xpath("text()").extract()
+        all_players = response.css('span.name')
 
-        items['player_name'] = player_name
-
-        yield items
+        for players in all_players:
+            yield {
+                'Name' : players.css("a").xpath("text()").extract(),
+                'Link' : "https://www.pgatour.com/players" + players.css("a").xpath("@href").extract()[0]
+            }

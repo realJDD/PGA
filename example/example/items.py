@@ -11,3 +11,4 @@ import scrapy
 class ExampleItem(scrapy.Item):
     # define the fields for your item here like:
     player_name = scrapy.Field()
+    player_link = scrapy.Field()
