@@ -12,6 +12,6 @@ class pgaSpider(scrapy.Spider):
 
         for players in all_players:
             yield {
-                'Name' : players.css("a").xpath("text()").extract(),
-                'Link' : "https://www.pgatour.com/players" + players.css("a").xpath("@href").extract()[0]
+                # 'Name' : players.css("a").xpath("text()").extract(),
+                'Link': "https://www.pgatour.com/players" + players.css("a").xpath("@href").extract()[0]
             }
